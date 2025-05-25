@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,7 +10,6 @@
             text-align: center;
             color: #d63384;
             padding: 20px;
-            overflow-x: hidden;
         }
         img {
             width: 200px;
@@ -26,19 +24,16 @@
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
         }
         p {
             font-size: 1.2em;
             max-width: 600px;
             margin: 0 auto 20px auto;
             line-height: 1.6;
-            animation: fadeIn 3s ease-in-out;
         }
         .heart {
             font-size: 2em;
             color: #ff4d88;
-            animation: pulse 1s infinite;
         }
         .balloons {
             margin-top: 20px;
@@ -50,34 +45,20 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .confetti {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        .confetti-piece {
-            position: absolute;
-            width: 10px;
-            height: 10px;
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1em;
             background-color: #ff99cc;
-            opacity: 0.8;
-            animation: fall 5s linear infinite;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
         }
-        @keyframes fall {
-            0% { transform: translateY(-10%); }
-            100% { transform: translateY(110%); }
+        button:hover {
+            background-color: #ff66aa;
         }
     </style>
 </head>
@@ -87,20 +68,18 @@
     <p>Você é muito importante na minha vida, que Deus te abençoe muito muito, que sempre tenha bons amigos pra zelar e cuidar de você. Obg por tudo, te amo muito <span class="heart">❤️</span> Aproveita seu diaa!!!!</p>
 
     <div class="balloons">🎈🎈🎈</div>
-    <div class="confetti" id="confetti"></div>
 
-    <audio id="bg-music" src="MusicA.mp3" autoplay loop></audio>
+    <audio id="bg-music" src="MusicA.mp3" loop></audio>
+
+    <button onclick="document.getElementById('bg-music').play()">Tocar Música</button>
 
     <script>
-        const confettiContainer = document.getElementById('confetti');
-        for (let i = 0; i < 50; i++) {
-            const piece = document.createElement('div');
-            piece.classList.add('confetti-piece');
-            piece.style.left = Math.random() * 100 + '%';
-            piece.style.animationDelay = Math.random() * 5 + 's';
-            piece.style.backgroundColor = ['#ff99cc', '#ffcce6', '#ffe6f0'][Math.floor(Math.random() * 3)];
-            confettiContainer.appendChild(piece);
-        }
+        // balões flutuando
+        const balloons = document.querySelector('.balloons');
+        setInterval(() => {
+            balloons.style.transform = 'translateY(-20px)';
+            setTimeout(() => balloons.style.transform = 'translateY(0)', 1500);
+        }, 3000);
     </script>
 </body>
 </html>
